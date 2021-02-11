@@ -15,8 +15,11 @@ class Window:
         psg.theme(theme)
 
     def start(self):
+        psg.Popup(
+            "Pessoas testando meus programas é incrível, obrigado!, by ViniciusDEV!", title="OBRIGADO!")
+
         window = psg.Window(title=self.title, layout=self.layout,
-                            element_justification="center", size=(300, 350))
+                            element_justification="center", size=(400, 450))
 
         while True:
             event, values = window.read()
@@ -66,16 +69,16 @@ if __name__ == "__main__":
     }
 
     layout = [
-        [psg.Text("Língua do texto....:", size=(14, 1)),
-         psg.Input(size=(20, 1))],
+        [psg.Text("Língua do texto......:", size=(16, 1), font="Liberation 12"),
+         psg.Input(size=(20, 1), background_color="lightgray", font="Liberation 10 bold")],
 
-        [psg.Text("Língua do tradutor: ", size=(14, 1)),
-         psg.Input(size=(20, 1))],
+        [psg.Text("Língua do tradutor.: ", size=(16, 1), font="Liberation 12"),
+         psg.Input(size=(20, 1), background_color="lightgray", font="Liberation 10 bold")],
 
         [psg.Text("Digite abaixo o texto à ser traduzido!",
-                  background_color="green")],
+                  background_color="darkgreen", font="Liberation 12")],
 
-        [psg.Multiline(size=(40, 14))],
+        [psg.Multiline(size=(45, 22), background_color="lightgray")],
 
         [psg.Button("TRADUZIR")]
     ]
