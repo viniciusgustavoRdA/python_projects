@@ -1,0 +1,5 @@
+YTDownloader MP3 REQUIREMENTS:
+    - ffmpeg (sudo apt install ffmpeg)
+
+YTDonwloader MP4 REQUIREMENTS:
+    - requirements.txt (pip requirements)
