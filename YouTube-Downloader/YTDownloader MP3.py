@@ -1,24 +1,32 @@
 from pytube import YouTube
 from os import system, path
 import PySimpleGUI as psg
+import platform
 
 
 class Window:
     """
     Esta classe não serve para outros projetos!
     """
+
     def __init__(self, title: str, layout: list):
         self.title = title
         self.layout = layout
 
     def start(self):
+        if platform.system() != "Linux":
+            psg.Popup(
+                "ESTE PROGRAMA FOI FEITO PARA A PLATAFORMA LINUX!, AGUARDE ATÉ UMA PRÓXIMA ATUALIZAÇÃO!", title="ERRO")
+            quit()
+
         self.window = psg.Window(self.title, self.layout, size=(600, 400))
 
         while True:
             event, values = self.window.read()
 
             if event == psg.WIN_CLOSED:
-                psg.Popup("Codado e pensado por ViniciusDEV,\nGITHUB: https://github.com/viniciusgustavoRdA,\nAté mais!", title="OBRIGADO")
+                psg.Popup(
+                    "Codado e pensado por ViniciusDEV,\nGITHUB: https://github.com/viniciusgustavoRdA,\nAté mais!", title="OBRIGADO")
                 break
 
             if values["Nome"] != "" and values["URL"] != "" and values["Pasta"] != "" and values["Browse"] != "":
