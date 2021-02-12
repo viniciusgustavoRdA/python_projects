@@ -4,6 +4,9 @@ import PySimpleGUI as psg
 
 
 class Window:
+    """
+    Esta classe não serve para outros projetos!
+    """
     def __init__(self, title: str, layout: list):
         self.title = title
         self.layout = layout
@@ -15,6 +18,7 @@ class Window:
             event, values = self.window.read()
 
             if event == psg.WIN_CLOSED:
+                psg.Popup("Codado e pensado por ViniciusDEV,\nGITHUB: https://github.com/viniciusgustavoRdA,\nAté mais!", title="OBRIGADO")
                 break
 
             if values["Nome"] != "" and values["URL"] != "" and values["Pasta"] != "" and values["Browse"] != "":
@@ -37,10 +41,10 @@ class Window:
                         f"ffmpeg -i '{values['Pasta']}'/'{values['Nome']}.mp4' '{values['Pasta']}'/'{values['Nome']}.mp3'")
 
                     psg.Popup("Arquivo convertido para MP3!",
-                              title="Convertido")
+                              title="CONVERTIDO")
 
                     psg.Popup("Limpando arquivos desnecessários!",
-                              title="Limpando")
+                              title="LIMPANDO")
 
                     system(f"rm -r '{values['Pasta']}'/'{values['Nome']}.mp4'")
 
@@ -65,3 +69,5 @@ if __name__ == "__main__":
 
     w1 = Window("YOUTUBE DOWNLOADER", layout)
     w1.start()
+
+# BY ViniciusDEV

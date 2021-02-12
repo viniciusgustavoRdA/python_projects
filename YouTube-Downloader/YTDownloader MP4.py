@@ -15,6 +15,7 @@ class Window:
             event, values = self.window.read()
 
             if event == psg.WIN_CLOSED:
+                psg.Popup("Codado e pensado por ViniciusDEV,\nGITHUB: https://github.com/viniciusgustavoRdA,\nAté mais!", title="OBRIGADO")
                 break
 
             if values["Nome"] != "" and values["URL"] != "" and values["Pasta"] != "" and values["Browse"] != "":
@@ -51,3 +52,5 @@ if __name__ == "__main__":
 
     w1 = Window("YOUTUBE DOWNLOADER", layout)
     w1.start()
+
+# BY ViniciusDEV
