@@ -35,29 +35,46 @@ class Window:
 
                     player_config = player.streams.get_highest_resolution()
 
-                    psg.Popup("Baixando o arquivo!", title="BAIXANDO")
+                    progress_bar = self.window.FindElement("ProgressBar")
 
-                    player_config.download(
-                        values['Pasta'], filename=values["Nome"])
+                    texto_progress_bar = self.window.FindElement(
+                        "TextoProgressBar")
 
-                    psg.Popup("Arquivo baixado com sucesso!", title="BAIXADO")
+                    if not path.exists(f"{values['Pasta']}/{values['Nome']}.mp3"):
 
-                    psg.Popup("Convertendo arquivo para MP3!",
-                              title="CONVERTENDO")
+                        texto_progress_bar.Update("Baixando o arquivo!")
 
-                    system(
-                        f"ffmpeg -i '{values['Pasta']}'/'{values['Nome']}.mp4' '{values['Pasta']}'/'{values['Nome']}.mp3'")
+                        progress_bar.UpdateBar(25)
 
-                    psg.Popup("Arquivo convertido para MP3!",
-                              title="CONVERTIDO")
+                        player_config.download(
+                            values['Pasta'], filename=values["Nome"])
 
-                    psg.Popup("Limpando arquivos desnecessários!",
-                              title="LIMPANDO")
+                        texto_progress_bar.Update(
+                            "Convertendo arquivo para MP3!")
 
-                    system(f"rm -r '{values['Pasta']}'/'{values['Nome']}.mp4'")
+                        progress_bar.UpdateBar(50)
 
-                    psg.Popup(
-                        f"Sucesso!, seu arquivo está pronto!, na pasta: '{values['Pasta']}'/'{values['Nome']}.mp3'", title="SUCESSO")
+                        system(
+                            f"ffmpeg -i '{values['Pasta']}'/'{values['Nome']}.mp4' '{values['Pasta']}'/'{values['Nome']}.mp3'")
+
+                        texto_progress_bar.Update(
+                            "Limpando arquivos desnecessários!")
+
+                        progress_bar.UpdateBar(100)
+
+                        system(
+                            f"rm -r '{values['Pasta']}'/'{values['Nome']}.mp4'")
+
+                        psg.Popup("Arquivo baixado com sucesso!",
+                                  title="SUCESSO")
+
+                        texto_progress_bar.Update("")
+
+                        progress_bar.UpdateBar(0)
+
+                    else:
+                        psg.Popup(
+                            f"Já existe um arquivo com o nome ({values['Nome']}.mp3) na pasta ({values['Pasta']}),\nColoque outro nome!", title="ERRO")
 
                 except Exception as error:
                     print(error)
@@ -72,6 +89,9 @@ if __name__ == "__main__":
          psg.Input(size=(47, 1), key="Nome")],
         [psg.Text("Pasta:", size=(20, 1)), psg.Input(
             size=(47, 1), key="Pasta"), psg.FolderBrowse()],
+        [psg.ProgressBar(100, key="ProgressBar",
+                         orientation="h", size=(50, 20))],
+        [psg.Text("", size=(40, 1), key="TextoProgressBar")],
         [psg.Button("Download", key="Download")]
     ]
 
