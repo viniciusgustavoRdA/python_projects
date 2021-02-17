@@ -1,6 +1,7 @@
 from pytube import YouTube
 from os import system, path
 import PySimpleGUI as psg
+from time import sleep
 
 
 class Window:
@@ -25,15 +26,32 @@ class Window:
 
                     player_config = player.streams.get_highest_resolution()
 
-                    psg.Popup("Baixando o arquivo!", title="BAIXANDO")
+                    progress_bar = self.window.FindElement("ProgressBar")
+
+                    texto_progress_bar = self.window.FindElement(
+                        "TextoProgressBar")
+
+                    texto_progress_bar.Update("Baixando o arquivo!")
+
+                    progress_bar.UpdateBar(50)
 
                     player_config.download(
                         values['Pasta'], filename=values["Nome"])
 
-                    psg.Popup("Arquivo baixado com sucesso!", title="BAIXADO")
+                    texto_progress_bar.Update("Arquivo baixado com sucesso!")
 
-                    psg.Popup(
-                        f"Sucesso!, seu arquivo está pronto!, na pasta: '{values['Pasta']}'/'{values['Nome']}.mp4'", title="SUCESSO")
+                    progress_bar.UpdateBar(100)
+
+                    sleep(3)
+
+                    texto_progress_bar.Update(
+                        f"Sucesso!, seu arquivo está pronto!, na pasta: '{values['Pasta']}'/'{values['Nome']}.mp4'")
+
+                    progress_bar.UpdateBar(0)
+
+                    sleep(3)
+
+                    texto_progress_bar.Update("")
 
                 except Exception as error:
                     print(error)
@@ -48,6 +66,9 @@ if __name__ == "__main__":
          psg.Input(size=(47, 1), key="Nome")],
         [psg.Text("Pasta:", size=(20, 1)), psg.Input(
             size=(47, 1), key="Pasta"), psg.FolderBrowse()],
+        [psg.ProgressBar(100, key="ProgressBar",
+                         orientation="h", size=(50, 20))],
+        [psg.Text("", size=(80, 2), key="TextoProgressBar")],
         [psg.Button("Download", key="Download")]
     ]
 
