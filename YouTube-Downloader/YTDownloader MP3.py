@@ -19,7 +19,7 @@ class Window:
                 "ESTE PROGRAMA FOI FEITO PARA A PLATAFORMA LINUX!, AGUARDE ATÉ UMA PRÓXIMA ATUALIZAÇÃO!", title="ERRO")
             quit()
 
-        self.window = psg.Window(self.title, self.layout, size=(600, 400))
+        self.window = psg.Window(self.title, self.layout, size=(600, 200))
 
         while True:
             event, values = self.window.read()
@@ -85,14 +85,20 @@ class Window:
 if __name__ == "__main__":
     layout = [
         [psg.Text("URL:", size=(20, 1)), psg.Input(size=(47, 1), key="URL")],
+
         [psg.Text("Nome (sem extensão):", size=(20, 1)),
+
          psg.Input(size=(47, 1), key="Nome")],
+
         [psg.Text("Pasta:", size=(20, 1)), psg.Input(
             size=(47, 1), key="Pasta"), psg.FolderBrowse()],
+
         [psg.ProgressBar(100, key="ProgressBar",
-                         orientation="h", size=(50, 20))],
+                         orientation="h", size=(60, 20))],
+
         [psg.Text("", size=(40, 1), key="TextoProgressBar")],
-        [psg.Button("Download", key="Download")]
+
+        [psg.Button("Download", key="Download", pad=(250, 0))]
     ]
 
     w1 = Window("YOUTUBE DOWNLOADER", layout)
