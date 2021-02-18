@@ -13,7 +13,7 @@ class Window:
 
         self.layout = [
             [psg.Text(
-                f"{self.hour}:{self.minute}:{self.second}", key="clock", size=(27, 1), justification="center", background_color="gray", text_color="white", font="Courier 32")]
+                f"{self.hour}:{self.minute}:{self.second}", key="clock", size=(27, 1), justification="center", background_color="gray", text_color="black", font="Consolas 32")]
         ]
 
         window = psg.Window(title=self.title, layout=self.layout)
