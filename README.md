@@ -9,3 +9,5 @@ Clock         | 3.5 :star:
 Notepad       | 4.5 :star:
 Translator    | 4.8 :star:
 YT-Downloader | 4.8 :star:
+
+### THANK YOU FOR VISIT MY REPOSITORY!, I'M VERY PLEASED!
