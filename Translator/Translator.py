@@ -19,7 +19,7 @@ class Window:
             "Pessoas testando meus programas é incrível, obrigado!, by ViniciusDEV!", title="OBRIGADO!")
 
         self.window = psg.Window(title=self.title, layout=self.layout,
-                                 element_justification="center", size=(400, 450))
+                                 element_justification="center", size=(400, 480))
 
         while True:
             event, values = self.window.read()
