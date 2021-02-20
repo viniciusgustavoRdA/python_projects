@@ -1,7 +1,6 @@
 from pytube import YouTube
-from os import system, path
+from os import system, path, remove
 import PySimpleGUI as psg
-import platform
 
 
 class Window:
@@ -14,11 +13,6 @@ class Window:
         self.layout = layout
 
     def start(self):
-        if platform.system() != "Linux":
-            psg.Popup(
-                "ESTE PROGRAMA FOI FEITO PARA A PLATAFORMA LINUX!, AGUARDE ATÉ UMA PRÓXIMA ATUALIZAÇÃO!", title="ERRO")
-            quit()
-
         self.window = psg.Window(self.title, self.layout, size=(600, 200))
 
         while True:
@@ -55,15 +49,14 @@ class Window:
                         progress_bar.UpdateBar(50)
 
                         system(
-                            f"ffmpeg -i '{values['Pasta']}'/'{values['Nome']}.mp4' '{values['Pasta']}'/'{values['Nome']}.mp3'")
+                            f"ffmpeg -i {values['Pasta']}/{values['Nome']}.mp4 {values['Pasta']}/{values['Nome']}.mp3")
 
                         texto_progress_bar.Update(
                             "Limpando arquivos desnecessários!")
 
                         progress_bar.UpdateBar(100)
 
-                        system(
-                            f"rm -r '{values['Pasta']}'/'{values['Nome']}.mp4'")
+                        remove(f"{values['Pasta']}/{values['Nome']}.mp4")
 
                         psg.Popup("Arquivo baixado com sucesso!",
                                   title="SUCESSO")

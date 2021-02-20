@@ -1,7 +1,7 @@
 YTDownloader MP3 REQUIREMENTS:
-    - ffmpeg (sudo apt install ffmpeg <- IF YOU'RE IN UBUNTU AND DERIVATIVES)
-    - a linux OS
+    - ffmpeg (sudo apt install ffmpeg <- IF YOU'RE IN UBUNTU AND DERIVATIVES, IN WINDOWS YOU NEED TO DOWNLOAD A BUILD AND ADD THE BIN PATH TO AMBIENT VARIABLES)
+    - any other OS (tested on Linux and Windows)
 
 YTDownloader MP4 REQUIREMENTS:
     - requirements.txt (pip requirements)
-    - any other OS (not tested in Windows and Darwin)
+    - any other OS (tested on Linux and Windows, not in Darwin)
